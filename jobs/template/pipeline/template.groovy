@@ -1,10 +1,10 @@
 @Library('jenkins-commons')
-import org.hcm.libjenkins.Gitlab
+import org.hcm.libjenkins.DockerSupport
 
-gitlab_lib = new Gitlab(this)
+DockerSupport dockerSupport = new DockerSupport(this)
 
-node() {
-  echo "Hello World!"
+dockerSupport.insideContainer('alpine:3.5') {
+  sh 'echo HELLO WORLD FROM DOCKER'
 }
 
-return this
+echo "DockerImageName = $DockerImageName"
